@@ -5,7 +5,13 @@
 			{{info}}
 		</li>
 
-		<div @click="getInfo">点击点击</div>
+		<div class="andy-font font" @click="getInfo">点击点击</div>
+        <div class="andy-font font" @click="getInfo">点击点击</div>
+        <div class="din font" @click="getInfo">123</div>
+        <div class="font" @click="getInfo">123</div>
+        <div class="din font" @click="getInfo">123</div>
+        <div class="font" @click="getInfo">123</div>
+        
 	</div>
 </template>
 
@@ -38,6 +44,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "../assets/fonts/font.css";
 h1,
 h2 {
     font-weight: normal;
@@ -55,5 +62,22 @@ li {
 
 a {
     color: #42b983;
+}
+
+.font {
+    line-height: 40px;
+    margin-bottom: 5px;
+    font-size: 36px;
+}
+.andy-font {
+    
+    /* font-family: "Microsoft YaHei"; */
+    font-family: "andyFont";
+}
+.din{
+    /* font-family: "Microsoft YaHei"; */
+    font-family: "DIN";
+    font-weight: bold;
+
 }
 </style>
