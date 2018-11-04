@@ -1,10 +1,6 @@
 # demo
 
-<<<<<<< HEAD
-> A Vue.js project!
-=======
-> A Vue.js project！
->>>>>>> d6fcd8bbdcb39b4ab79aab3c7787142be60dd6b2
+A Vue.js project！
 
 ## Build Setup
 
