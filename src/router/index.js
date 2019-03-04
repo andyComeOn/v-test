@@ -2,14 +2,62 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 
+import Login from '@/views/Login/Login'
+import NoFound from '@/views/NoFound'
+
+import LayoutOne from '@/views/LayoutOne'
+import LayoutTwo from '@/views/LayoutTwo'
+
+
+// component: () => import('@/views/Login/')
+// component: () => import('@/views/NoFound')
+
+
+
 Vue.use(Router)
 
+export const constantRouterMap = [
+  { path: '/login', component: Login, hidden: true },
+  { path: '/404', component: () => import('@/views/NoFound'), hidden: true }
+] 
+
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
+  // mode: 'history', // require service support
+  // scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap
 })
+
+export const asyncRouterMap = [
+  {
+    path: '/', 
+    redirect: '/guest',
+    name: 'shouye', 
+    component: LayoutOne,
+    children: [
+      {
+        path: '/guest',
+        name: '在住客人列表',
+        component: () => import('@/views/Guest/Guest'),
+      },
+      {
+        path: '/business-manage',
+        name: '营业管理',
+        redirect: '/business-manage/room-state',
+        component: {render (c) { return c('router-view') }},
+        children: [
+          {
+            path: 'room-state',
+            name: 'roomState',
+            component: () => import('@/views/RoomState/RoomState'),
+          },
+          {
+            path: 'book-manage',
+            name: 'bookManage',
+            component: () => import('@/views/BookManage/BookManage'),
+          },
+        ]
+      }
+
+    ]
+  }
+]
