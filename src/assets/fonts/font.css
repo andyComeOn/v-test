@@ -1,0 +1,15 @@
+@font-face {
+    font-family: andyFont;
+    src: url('./郑庆科建黑体.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: DIN;
+    src: url('./DIN-Black.otf');
+    /* src: url("./DIN-RegularAlternate.otf"); */
+    /* src: url("./DIN-Bold.otf"); */
+    
+    /* src: url("./DINCond-Light.otf"); */
+    /* src: url("./DINCond-BoldAlternate.otf"); */
+    /* DINCond-Light */
+}
