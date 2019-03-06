@@ -1,10 +1,10 @@
 <template>
   <div class="layoutOnePage">
-    <Header></Header>
+    <mHeader></mHeader>
     <div class="layoutBody">
-      <Slider></Slider>
+      <mSlider></mSlider>
       <section>
-        <breadcrumb :list="list"/>
+        <!-- <breadcrumb :list="list"/> -->
         <div class="routerView">
           <router-view></router-view>
         </div>
@@ -15,11 +15,13 @@
 
 <script>
 import { getCookie, setCookie } from "@/utils/util";
-import Header from '@/components/Header';
+import mHeader from '@/components/Header';
+import mSlider from '@/components/Sidebar';
 export default {
   name: "layoutOne",
   components: {
-    Header
+    mHeader,
+    mSlider
   },
   data() {
     return {};
@@ -36,7 +38,7 @@ export default {
 <style lang="scss" scoped>
 .layoutOnePage {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   // background: #ccc;
 }
 </style>

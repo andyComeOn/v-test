@@ -63,31 +63,8 @@ const user = {
 
   actions: {
     // 邮箱登录
-    // LoginByEmail({ commit }, userInfo) {
-    //   // console.log(userInfo);
-    //   debugger;
-    //   const email = userInfo.email.trim();
-    //   return new Promise((resolve, reject) => {
-    //     debugger;
-    //     // console.log(userInfo);
-    //     loginByEmail(email, userInfo.password).then(response => {
-    //       debugger
-    //       const data = response.data;
-    //       console.log(response.data);
-    //       Cookies.set('Admin-Token', response.data.token);
-    //       commit('SET_TOKEN', data.token);
-    //       commit('SET_EMAIL', email);
-    //       resolve();
-    //     }).catch(error => {
-    //       reject(error);
-    //     });
-    //   });
-    // },
-
     LoginByEmail({ commit }, userInfo) {
-      debugger;
       const email = userInfo.email.trim();
-      debugger;
       return new Promise((resolve, reject) => {
         loginByEmail(email, userInfo.password).then(response => {
           debugger;

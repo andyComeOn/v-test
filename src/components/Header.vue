@@ -13,9 +13,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$width: 50px;
+$h: 50px;
 .headerPage {
-  width: $width;
+  height: $h;
+  
   background: #cccccc;
 }
 </style>

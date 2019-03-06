@@ -6,9 +6,9 @@
       :model="loginForm"
       :rules="loginRules"
     >
-      <h3>PMS后台管理系统</h3>
-      <FormItem prop="user">
-        <Input type="text" v-model="loginForm.user" placeholder="Username">
+      <h3>管理系统</h3>
+      <FormItem prop="email">
+        <Input type="text" v-model="loginForm.email" placeholder="Username">
           <Icon type="ios-person-outline" slot="prepend"></Icon>
         </Input>
       </FormItem>
@@ -52,11 +52,11 @@ export default {
     };
     return {
       loginForm: {
-        user: "admin@wz.com",
+        email: "admin@wz.com",
         password: "123456"
       },
       loginRules: {
-        user: [{ required: true, trigger: "blur", validator: validateUser }],
+        email: [{ required: true, trigger: "blur", validator: validateUser }],
         password: [{ required: true, trigger: "blur", validator: validatePass }]
       }
     };
