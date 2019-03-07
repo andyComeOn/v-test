@@ -39,6 +39,15 @@ export default {
 .layoutOnePage {
   width: 100%;
   height: 100vh;
-  // background: #ccc;
+  position: relative;
+  padding-top: 50px;
+  box-sizing: border-box;
+  .layoutBody {
+    height: 100%;
+    section {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 </style>

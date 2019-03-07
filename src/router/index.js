@@ -24,7 +24,8 @@ export const constantRouterMap = [
 export default new Router({
   // mode: 'history', // require service support
   // scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
+  routes: constantRouterMap,
+  // mode: 'history'
 })
 
 export const asyncRouterMap = [
@@ -36,23 +37,35 @@ export const asyncRouterMap = [
     children: [
       {
         path: '/guest',
-        name: '在住客人列表',
+        name: 'guest',
+        meta: {
+          title: '在住客人列表'
+        },
         component: () => import('@/views/Guest/Guest'),
       },
       {
         path: '/business-manage',
-        name: '营业管理',
+        name: 'businessManage',
+        meta: {
+          title: '营业管理'
+        },
         redirect: '/business-manage/room-state',
         component: {render (c) { return c('router-view') }},
         children: [
           {
             path: 'room-state',
             name: 'roomState',
+            meta: {
+              title: '房态'
+            },
             component: () => import('@/views/RoomState/RoomState'),
           },
           {
             path: 'book-manage',
             name: 'bookManage',
+            meta: {
+              title: '预定管理'
+            },
             component: () => import('@/views/BookManage/BookManage'),
           },
         ]

@@ -1,6 +1,8 @@
 <template>
   <div class="headerPage">
     headerPage
+
+    
   </div>
 </template>
 
@@ -16,7 +18,10 @@ export default {
 $h: 50px;
 .headerPage {
   height: $h;
-  
-  background: #cccccc;
+  background: orchid;
+  // position: relative;
+  margin-top: -50px;
+  padding-left: 15px;
+  line-height: 50px;
 }
 </style>
