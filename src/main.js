@@ -6,12 +6,12 @@ import router from './router'
 import store from './store'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+import './icons'
 import './mock/mock'
 import './permission'
 
 Vue.use(iView)
 Vue.config.productionTip = false
-
 
 import { getCookie, setCookie } from "@/utils/util";
 setCookie("userInfoTel", "1");

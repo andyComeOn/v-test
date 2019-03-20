@@ -7,12 +7,10 @@ import NoFound from '@/views/NoFound'
 
 import LayoutOne from '@/views/LayoutOne'
 import LayoutTwo from '@/views/LayoutTwo'
-
+import { resolve } from 'path';
 
 // component: () => import('@/views/Login/')
 // component: () => import('@/views/NoFound')
-
-
 
 Vue.use(Router)
 
@@ -34,7 +32,12 @@ export const asyncRouterMap = [
     redirect: '/guest',
     name: 'shouye', 
     component: LayoutOne,
+    // resolve => require([LayoutOne], resolve),
+    meta: {
+      title: '首页'
+    },
     children: [
+      // 在住客人列表
       {
         path: '/guest',
         name: 'guest',
@@ -43,14 +46,15 @@ export const asyncRouterMap = [
         },
         component: () => import('@/views/Guest/Guest'),
       },
+      // 营业管理
       {
         path: '/business-manage',
         name: 'businessManage',
         meta: {
           title: '营业管理'
         },
-        redirect: '/business-manage/room-state',
-        component: {render (c) { return c('router-view') }},
+        component: { render (c) { return c('router-view') } },
+        // component: () => import('<router-view></router-view>'),
         children: [
           {
             path: 'room-state',
@@ -58,7 +62,7 @@ export const asyncRouterMap = [
             meta: {
               title: '房态'
             },
-            component: () => import('@/views/RoomState/RoomState'),
+            component: () => import('@/views/RoomState/RoomState')
           },
           {
             path: 'book-manage',
@@ -66,11 +70,62 @@ export const asyncRouterMap = [
             meta: {
               title: '预定管理'
             },
-            component: () => import('@/views/BookManage/BookManage'),
+            component: () => import('@/views/BookManage/BookManage')
+          }
+        ]
+      },
+      // 订单
+      {
+        path: '/order',
+        name: 'order',
+        meta: {
+          title: '订单'
+        },
+        component: { render (c) { return c('router-view') }},
+        children: [
+          {
+            path: 'order-list',
+            // redirect: '/order-list/old-order-list',
+            name: 'orderList',
+            meta: {
+              title: '订单列表'
+            },
+            component: {render (c) { return c('router-view') }},
+            children: [
+              {
+                path: 'old-order-list',
+                name: 'oldOrderList',
+                meta: {
+                  title: '历史订单列表'
+                },
+                component: () => import('@/views/Order/OrderList/OldOrderList'),
+              },
+              {
+                path: 'new-order-list',
+                name: 'newOrderList',
+                meta: {
+                  title: '新订单列表'
+                },
+                component: () => import('@/views/Order/OrderList/NewOrderList'),
+              },
+            ]
           },
+          {
+            path: 'order-query',
+            name: 'orderQuery',
+            meta: {
+              title: '订单查询'
+            },
+            component: () => import('@/views/Order/OrderQuery/OrderQuery'),
+          }
         ]
       }
-
     ]
-  }
+  },
+  
+
+      
+
+    
+  
 ]

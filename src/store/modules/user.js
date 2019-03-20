@@ -67,7 +67,7 @@ const user = {
       const email = userInfo.email.trim();
       return new Promise((resolve, reject) => {
         loginByEmail(email, userInfo.password).then(response => {
-          debugger;
+          // debugger;
           const data = response.data;
           console.log('-------------');
           console.log(data);

@@ -21,7 +21,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bookManage {
+.bookManagePage {
   font-size: 16px;
+  padding-left: 15px;
 }
 </style>

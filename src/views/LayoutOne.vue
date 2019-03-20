@@ -2,7 +2,7 @@
   <div class="layoutOnePage">
     <mHeader></mHeader>
     <div class="layoutBody">
-      <mSlider></mSlider>
+      <mSider></mSider>
       <section>
         <!-- <breadcrumb :list="list"/> -->
         <div class="routerView">
@@ -16,12 +16,12 @@
 <script>
 import { getCookie, setCookie } from "@/utils/util";
 import mHeader from '@/components/Header';
-import mSlider from '@/components/Sidebar';
+import mSider from '@/components/Sidebar';
 export default {
   name: "layoutOne",
   components: {
     mHeader,
-    mSlider
+    mSider
   },
   data() {
     return {};
@@ -44,9 +44,12 @@ export default {
   box-sizing: border-box;
   .layoutBody {
     height: 100%;
+    display: flex;
+    flex-direction: row;
     section {
-      width: 100%;
+      flex: 1;
       height: 100%;
+      overflow: auto;
     }
   }
 }

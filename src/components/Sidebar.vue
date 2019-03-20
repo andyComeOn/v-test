@@ -1,18 +1,35 @@
 <template>
   <div class="sidebar">
-
-
     <!-- <sidebar-item :routes="siderbar_routers.children"></sidebar-item> -->
-
-    <Menu ref="">
-      <template v-for="item in siderbar_routers.children">
-        <template v-if="item.children && item.children.length === 1">
-          <SidebarItem v-if="showChildren(item)" :key="`menu-${item.name}`"></SidebarItem>
-          <menu-item v-else :name="getNameOrHref(item, true)" :key="`menu-${item.children[0].name}`"><common-icon :type="item.children[0].icon || ''"/><span>{{ showTitle(item.children[0]) }}</span></menu-item>
+    <Menu ref="" width="200" theme="dark">
+      <template v-for="(item, index) in menuList">
+        <template v-if="!item.children">
+          <MenuItem :name="item.name" :to="item.path">{{item.meta.title}}</MenuItem>
         </template>
         <template v-else>
-          <SidebarItem v-if="showChildren(item)" :key="`menu-${item.name}`"></SidebarItem>
-          <menu-item v-else :name="getNameOrHref(item)" :key="`menu-${item.name}`"><common-icon :type="item.icon || ''"/><span>{{ showTitle(item) }}</span></menu-item>
+          <Submenu :name="item.name">
+            <template slot="title">
+              <!-- <Icon type="ios-paper" /> -->
+              <svg-icon icon-class="dashboard" />
+              {{item.meta.title}}
+            </template>
+            <template v-for="(itemSon, indexSon) in item.children">
+              <template v-if="!itemSon.children">
+                <MenuItem :name="itemSon.name" :to="item.path+'/'+itemSon.path">{{ itemSon.meta.title }}</MenuItem>
+              </template>
+              <template v-else>
+                <Submenu :name="itemSon.name">
+                  <template slot="title">
+                    <Icon type="ios-paper" />
+                    {{itemSon.meta.title}}
+                  </template>
+                  <template v-for="(itemGrandson, indexGrandson) in itemSon.children">
+                    <MenuItem :name="itemGrandson.name" :to="item.path+'/'+itemSon.path+'/'+itemGrandson.path">{{ itemGrandson.meta.title }}</MenuItem>
+                  </template>
+                </Submenu>  
+              </template>
+            </template>
+          </Submenu>
         </template>
       </template>
     </Menu>
@@ -21,14 +38,31 @@
 <script>
 import SidebarItem from "./SidebarItem";
 import { mapGetters } from "vuex";
-import mixin from './mixin';
+import mixin from "./mixin";
 import { showTitle } from "@/utils/util";
+import { a, b } from "./m";
 
 export default {
   name: "sidebar",
-  mixins: [ mixin ],
+  mixins: [mixin],
 
-  components: { SidebarItem },
+  components: {
+    // SidebarItem
+  },
+  data() {
+    return {
+      menuList: [],
+      temp: {
+        age: 1,
+        w: [1, 2]
+      },
+      userMap: {
+        a: 123,
+        b: 567
+      }
+      
+    };
+  },
   computed: {
     ...mapGetters(["siderbar_routers"])
   },
@@ -36,10 +70,23 @@ export default {
     handleClick(e) {
       e.preventDefault();
       e.target.parentElement.classList.toggle("open");
+    },
+
+    aa() {
+      if (true) {
+        console.log(1289989);
+      }
+      return false;
     }
   },
-  mounted () {
+  mounted() {
     console.log(this.siderbar_routers);
+    this.menuList = this.siderbar_routers.children;
+    const { c } = this.temp;
+    // console.log(c);
+    // console.log(a, b);
+    console.log(this.userMap['b'])
+    console.log(this.userMap.a)
   }
 };
 </script>
@@ -48,8 +95,8 @@ export default {
 .sidebar {
   width: 200px;
   height: 100%;
-  background: #ccc;
-  float: left;
+  /* background: #ccc; */
+  /* float: left; */
 }
 
 .nav-link {

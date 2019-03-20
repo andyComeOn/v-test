@@ -1,5 +1,7 @@
 <template>
-  <div class="guestPage">guestPage</div>
+  <div class="guestPage">guestPage
+    <svg-icon icon-class="qq" />
+  </div>
 </template>
 
 <script>
@@ -10,7 +12,8 @@ export default {
 
 <style lang="scss" scoped>
 .guestPage {
-  line-height: 50px;
-  background: olive;
+  height: 1000px;
+  background: #ccc;
+  // color: aqua;
 }
 </style>
