@@ -42,6 +42,7 @@ export default {
   position: relative;
   padding-top: 50px;
   box-sizing: border-box;
+  overflow-y: hidden;
   .layoutBody {
     height: 100%;
     display: flex;
@@ -49,7 +50,12 @@ export default {
     section {
       flex: 1;
       height: 100%;
-      overflow: auto;
+      // overflow: auto;
+      background-color: #f0f2f5;
+      .routerView {
+        height: 100%;
+        overflow: auto;
+      }
     }
   }
 }

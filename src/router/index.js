@@ -37,7 +37,7 @@ export const asyncRouterMap = [
       title: '首页'
     },
     children: [
-      // 在住客人列表
+      // 在住客人列表（一级）
       {
         path: '/guest',
         name: 'guest',

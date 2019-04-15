@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
     <!-- <sidebar-item :routes="siderbar_routers.children"></sidebar-item> -->
-    <Menu ref="" width="200" theme="dark">
+    <Menu ref="" width="200" theme="dark" active-name="guest">
       <template v-for="(item, index) in menuList">
         <template v-if="!item.children">
           <MenuItem :name="item.name" :to="item.path">{{item.meta.title}}</MenuItem>
