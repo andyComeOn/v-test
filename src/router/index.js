@@ -22,6 +22,7 @@ export const constantRouterMap = [
 export default new Router({
   // mode: 'history', // require service support
   // scrollBehavior: () => ({ y: 0 }),
+  linkActiveClass: 'ivu-menu-item-selected',
   routes: constantRouterMap,
   // mode: 'history'
 })
@@ -29,7 +30,7 @@ export default new Router({
 export const asyncRouterMap = [
   {
     path: '/', 
-    redirect: '/guest',
+    redirect: '/business-manage/room-state',
     name: 'shouye', 
     component: LayoutOne,
     // resolve => require([LayoutOne], resolve),
@@ -59,9 +60,7 @@ export const asyncRouterMap = [
           {
             path: 'room-state',
             name: 'roomState',
-            meta: {
-              title: '房态'
-            },
+            meta: {title: '房态'},
             component: () => import('@/views/RoomState/RoomState')
           },
           {
@@ -122,6 +121,23 @@ export const asyncRouterMap = [
       }
     ]
   },
+  {
+    path: '/layout2',
+    redirect: '/group',
+    name: 'shouye2',
+    meta: {title: '集团'},
+    component: LayoutTwo,
+    children: [
+      {
+        path: '/group',
+        name: 'group',
+        meta: {title: '集团设置'},
+        component: () => import('@/views/Group/GroupSet')
+      },
+      
+    ]
+
+  }
   
 
       

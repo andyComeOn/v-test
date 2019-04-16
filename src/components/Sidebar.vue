@@ -1,32 +1,50 @@
 <template>
   <div class="sidebar">
     <!-- <sidebar-item :routes="siderbar_routers.children"></sidebar-item> -->
-    <Menu ref="" width="200" theme="dark" active-name="guest">
+    <Menu
+      ref="side_menu"
+      width="200"
+      theme="dark"
+      active-name="roomState"
+      :open-names="['businessManage']"
+    >
       <template v-for="(item, index) in menuList">
         <template v-if="!item.children">
-          <MenuItem :name="item.name" :to="item.path">{{item.meta.title}}</MenuItem>
+          <MenuItem
+            :name="item.name"
+            :to="item.path"
+          >
+            <svg-icon icon-class="guestlist" />
+            {{item.meta.title}}
+          </MenuItem>
         </template>
         <template v-else>
           <Submenu :name="item.name">
             <template slot="title">
               <!-- <Icon type="ios-paper" /> -->
-              <svg-icon icon-class="dashboard" />
+              <svg-icon icon-class="business" />
               {{item.meta.title}}
             </template>
             <template v-for="(itemSon, indexSon) in item.children">
               <template v-if="!itemSon.children">
-                <MenuItem :name="itemSon.name" :to="item.path+'/'+itemSon.path">{{ itemSon.meta.title }}</MenuItem>
+                <MenuItem
+                  :name="itemSon.name"
+                  :to="item.path+'/'+itemSon.path"
+                >{{ itemSon.meta.title }}</MenuItem>
               </template>
               <template v-else>
                 <Submenu :name="itemSon.name">
                   <template slot="title">
-                    <Icon type="ios-paper" />
+                    <svg-icon icon-class="order" />
                     {{itemSon.meta.title}}
                   </template>
                   <template v-for="(itemGrandson, indexGrandson) in itemSon.children">
-                    <MenuItem :name="itemGrandson.name" :to="item.path+'/'+itemSon.path+'/'+itemGrandson.path">{{ itemGrandson.meta.title }}</MenuItem>
+                    <MenuItem
+                      :name="itemGrandson.name"
+                      :to="item.path+'/'+itemSon.path+'/'+itemGrandson.path"
+                    >{{ itemGrandson.meta.title }}</MenuItem>
                   </template>
-                </Submenu>  
+                </Submenu>
               </template>
             </template>
           </Submenu>
@@ -60,11 +78,16 @@ export default {
         a: 123,
         b: 567
       }
-      
     };
   },
   computed: {
     ...mapGetters(["siderbar_routers"])
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$refs.side_menu.updateOpened();
+      this.$refs.side_menu.updateActiveName();
+    });
   },
   methods: {
     handleClick(e) {
@@ -85,8 +108,8 @@ export default {
     const { c } = this.temp;
     // console.log(c);
     // console.log(a, b);
-    console.log(this.userMap['b'])
-    console.log(this.userMap.a)
+    console.log(this.userMap["b"]);
+    console.log(this.userMap.a);
   }
 };
 </script>
@@ -95,8 +118,12 @@ export default {
 .sidebar {
   width: 200px;
   height: 100%;
+
   /* background: #ccc; */
+
   /* float: left; */
+
+  background: #515a6e;
 }
 
 .nav-link {
